@@ -10,16 +10,12 @@ module MethodAnnotation
 
     module ClassMethods
       def method_added(meth)
-        return if @__standby_annotations.length < 1
         annotation = @__standby_annotations.shift
-        annotate_method annotation, meth
+        annotate_method(annotation, meth) unless annotation.nil?
       end
 
       def annotate_method(annotation, *methods)
-        if methods.length <= 0
-          @__standby_annotations << annotation
-          return
-        end
+        @__standby_annotations << annotation if methods.length <= 0
 
         methods.each do |meth|
           @__method_to_annotations[meth.to_sym] << annotation
