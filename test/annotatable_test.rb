@@ -67,4 +67,10 @@ class AnnotatableTest < Test::Unit::TestCase
 
     assert C.method_annotated?(:annotation, :meth)
   end
+
+  test 'A#meth is annotated with same annotations twice' do
+    A.annotate_method :annotation, :meth
+    A.annotate_method :annotation, :meth
+    assert_equal A.annotations_for(:meth), %i[annotation]
+  end
 end

@@ -3,7 +3,7 @@
 module MethodAnnotation
   module Annotatable
     def self.included(mod)
-      mod.instance_variable_set(:@__method_to_annotations, Hash.new { |h, k| h[k] = [] })
+      mod.instance_variable_set(:@__method_to_annotations, Hash.new { |h, k| h[k] = Set.new })
       mod.instance_variable_set(:@__standby_annotations, [])
       mod.extend ClassMethods
     end
@@ -31,7 +31,7 @@ module MethodAnnotation
       end
 
       def annotations_for(meth)
-        @__method_to_annotations[meth.to_sym].clone
+        @__method_to_annotations[meth.to_sym].to_a
       end
     end
   end
