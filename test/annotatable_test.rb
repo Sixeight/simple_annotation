@@ -44,8 +44,8 @@ class AnnotatableTest < Test::Unit::TestCase
   end
 
   test 'A#meth1 is annotated with multiple tags' do
-    A.annotate_method :test1, :meth1
-    A.annotate_method :test2, :meth1
-    assert_equal A.annotations_for(:meth1), [:test1, :test2]
+    A.annotate_method :tag1, :meth1
+    A.annotate_method :tag2, :meth1
+    assert_equal A.annotations_for(:meth1), [:tag1, :tag2]
   end
 end
