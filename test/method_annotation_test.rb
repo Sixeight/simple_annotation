@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require "test_helper"
+require 'test_helper'
 
 class MethodAnnotationTest < Test::Unit::TestCase
-  test "VERSION" do
+  test 'VERSION' do
     assert do
       ::MethodAnnotation.const_defined?(:VERSION)
     end
@@ -25,14 +25,14 @@ class MethodAnnotationTest < Test::Unit::TestCase
     A.annotate_method :tag1, :meth
     A.annotate_method :tag2, :meth
     unbound_meth = A.public_instance_method(:meth)
-    assert_equal unbound_meth.annotations, [:tag1, :tag2]
+    assert_equal unbound_meth.annotations, %i[tag1 tag2]
   end
 
   test 'A#meth is annotated with multiple tags (method)' do
     A.annotate_method :tag1, :meth
     A.annotate_method :tag2, :meth
     meth = A.new.public_method(:meth)
-    assert_equal meth.annotations, [:tag1, :tag2]
+    assert_equal meth.annotations, %i[tag1 tag2]
   end
 
   test 'A#meth is not annotated (unbound method)' do
