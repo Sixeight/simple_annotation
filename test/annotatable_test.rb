@@ -49,4 +49,10 @@ class AnnotatableTest < Test::Unit::TestCase
     A.annotate_method :tag2, :meth1
     assert_equal A.annotations_for(:meth1), %i[tag1 tag2]
   end
+
+  test 'Add tag to multiple methods' do
+    A.annotate_method :tag, :meth1, :meth2
+    assert A.method_annotated?(:tag, :meth1)
+    assert A.method_annotated?(:tag, :meth2)
+  end
 end

@@ -8,8 +8,10 @@ module MethodAnnotation
     end
 
     module ClassMethods
-      def annotate_method(tag, meth)
-        @_method_to_annotations[meth.to_sym] << tag
+      def annotate_method(tag, *meths)
+        Array(meths).each do |meth|
+          @_method_to_annotations[meth.to_sym] << tag
+        end
       end
 
       def method_annotated?(tag, meth)
