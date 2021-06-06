@@ -3,11 +3,10 @@
 module MethodAnnotation
   module Annotatable
     def self.included(mod)
-      mod.instance_variable_set(:@_method_to_annotations, Hash.new { |h, k| h[k] = [] })
+      mod.instance_variable_set(:@__method_to_annotations, Hash.new { |h, k| h[k] = [] })
       mod.instance_variable_set(:@__standby_annotations, [])
       mod.extend ClassMethods
     end
-
 
     module ClassMethods
       def method_added(meth)
@@ -16,23 +15,23 @@ module MethodAnnotation
         annotate_method annotation, meth
       end
 
-      def annotate_method(tag, *methods)
+      def annotate_method(annotation, *methods)
         if methods.length <= 0
-          @__standby_annotations << tag
+          @__standby_annotations << annotation
           return
         end
 
         methods.each do |meth|
-          @_method_to_annotations[meth.to_sym] << tag
+          @__method_to_annotations[meth.to_sym] << annotation
         end
       end
 
-      def method_annotated?(tag, meth)
-        @_method_to_annotations[meth.to_sym].include? tag
+      def method_annotated?(annotation, meth)
+        @__method_to_annotations[meth.to_sym].include? annotation
       end
 
       def annotations_for(meth)
-        @_method_to_annotations[meth.to_sym].clone
+        @__method_to_annotations[meth.to_sym].clone
       end
     end
   end

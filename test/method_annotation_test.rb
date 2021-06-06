@@ -21,18 +21,18 @@ class MethodAnnotationTest < Test::Unit::TestCase
     A.include MethodAnnotation::Annotatable
   end
 
-  test 'A#meth is annotated with multiple tags (unbound method)' do
-    A.annotate_method :tag1, :meth
-    A.annotate_method :tag2, :meth
+  test 'A#meth is annotated with multiple annotations (unbound method)' do
+    A.annotate_method :annotation1, :meth
+    A.annotate_method :annotation2, :meth
     unbound_meth = A.public_instance_method(:meth)
-    assert_equal unbound_meth.annotations, %i[tag1 tag2]
+    assert_equal unbound_meth.annotations, %i[annotation1 annotation2]
   end
 
-  test 'A#meth is annotated with multiple tags (method)' do
-    A.annotate_method :tag1, :meth
-    A.annotate_method :tag2, :meth
+  test 'A#meth is annotated with multiple annotations (method)' do
+    A.annotate_method :annotation1, :meth
+    A.annotate_method :annotation2, :meth
     meth = A.new.public_method(:meth)
-    assert_equal meth.annotations, %i[tag1 tag2]
+    assert_equal meth.annotations, %i[annotation1 annotation2]
   end
 
   test 'A#meth is not annotated (unbound method)' do

@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Tomohiro Nishimura']
   spec.email         = ['tomohiro68@gmail.com']
 
-  spec.summary       = 'Annotate method with tag.'
-  spec.description   = 'Annotate method with tag.'
+  spec.summary       = 'Annotate method with annotation.'
+  spec.description   = 'Annotate method with annotation.'
   spec.homepage      = 'https://githuc.com/Sixeight/method_annotation'
   spec.license       = 'MIT'
   spec.required_ruby_version = Gem::Requirement.new('>= 2.5.0')

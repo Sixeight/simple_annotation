@@ -44,27 +44,27 @@ class AnnotatableTest < Test::Unit::TestCase
     assert !B.method_annotated?(:test, :meth1)
   end
 
-  test 'A#meth1 is annotated with multiple tags' do
-    A.annotate_method :tag1, :meth1
-    A.annotate_method :tag2, :meth1
-    assert_equal A.annotations_for(:meth1), %i[tag1 tag2]
+  test 'A#meth1 is annotated with multiple annotations' do
+    A.annotate_method :annotation1, :meth1
+    A.annotate_method :annotation2, :meth1
+    assert_equal A.annotations_for(:meth1), %i[annotation1 annotation2]
   end
 
-  test 'Add tag to multiple methods' do
-    A.annotate_method :tag, :meth1, :meth2
-    assert A.method_annotated?(:tag, :meth1)
-    assert A.method_annotated?(:tag, :meth2)
+  test 'Add annotation to multiple methods' do
+    A.annotate_method :annotation, :meth1, :meth2
+    assert A.method_annotated?(:annotation, :meth1)
+    assert A.method_annotated?(:annotation, :meth2)
   end
 
   test 'Annotate methods using separate style' do
     class C
       include MethodAnnotation::Annotatable
 
-      annotate_method :tag
+      annotate_method :annotation
       def meth
       end
     end
 
-    assert C.method_annotated?(:tag, :meth)
+    assert C.method_annotated?(:annotation, :meth)
   end
 end
