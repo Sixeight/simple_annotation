@@ -55,4 +55,16 @@ class AnnotatableTest < Test::Unit::TestCase
     assert A.method_annotated?(:tag, :meth1)
     assert A.method_annotated?(:tag, :meth2)
   end
+
+  test 'Annotate methods using separate style' do
+    class C
+      include MethodAnnotation::Annotatable
+
+      annotate_method :tag
+      def meth
+      end
+    end
+
+    assert C.method_annotated?(:tag, :meth)
+  end
 end
