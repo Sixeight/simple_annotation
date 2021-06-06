@@ -18,7 +18,7 @@ class MethodAnnotationTest < Test::Unit::TestCase
   end
 
   def setup
-    A.extend MethodAnnotation::Annotatable
+    A.include MethodAnnotation::Annotatable
   end
 
   test 'A#meth is annotated with multiple tags (unbound method)' do
@@ -45,12 +45,12 @@ class MethodAnnotationTest < Test::Unit::TestCase
     assert_equal meth.annotations, []
   end
 
-  test 'B is not extend annotatable (unbound method)' do
+  test 'B is not included annotatable (unbound method)' do
     meth = B.public_instance_method(:meth)
     assert_equal meth.annotations, []
   end
 
-  test 'B is not extend annotatable (method)' do
+  test 'B is not included annotatable (method)' do
     meth = B.new.public_method(:meth)
     assert_equal meth.annotations, []
   end

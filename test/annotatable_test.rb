@@ -13,15 +13,15 @@ class AnnotatableTest < Test::Unit::TestCase
   end
 
   def setup
-    A.extend MethodAnnotation::Annotatable
-    B.extend MethodAnnotation::Annotatable
+    A.include MethodAnnotation::Annotatable
+    B.include MethodAnnotation::Annotatable
   end
 
-  test 'extend :annotate_method' do
+  test 'include #annotate_method' do
     assert A.public_methods.include?(:annotate_method)
   end
 
-  test 'extend :method_annotated?' do
+  test 'include #method_annotated?' do
     assert A.public_methods.include?(:method_annotated?)
   end
 

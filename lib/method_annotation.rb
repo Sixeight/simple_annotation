@@ -6,7 +6,7 @@ require_relative "method_annotation/annotatable"
 
 module MethodAnnotation
   def annotations
-    return [] unless owner.singleton_class.include? Annotatable
+    return [] unless owner.include? Annotatable
     owner.annotations_for(self.original_name)
   end
 

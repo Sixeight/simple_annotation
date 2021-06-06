@@ -2,20 +2,23 @@
 
 module MethodAnnotation
   module Annotatable
-    def self.extended(mod)
-      mod.class_variable_set(:@@method_to_annotations, Hash.new { |h, k| h[k] = [] })
+    def self.included(mod)
+      mod.instance_variable_set(:@_method_to_annotations, Hash.new { |h, k| h[k] = [] })
+      mod.extend ClassMethods
     end
 
-    def annotate_method(tag, meth)
-      class_variable_get(:@@method_to_annotations)[meth.name] << tag
-    end
+    module ClassMethods
+      def annotate_method(tag, meth)
+        @_method_to_annotations[meth.to_sym] << tag
+      end
 
-    def method_annotated?(tag, meth)
-      class_variable_get(:@@method_to_annotations)[meth.name].include? tag
-    end
+      def method_annotated?(tag, meth)
+        @_method_to_annotations[meth.to_sym].include? tag
+      end
 
-    def annotations_for(meth)
-      class_variable_get(:@@method_to_annotations)[meth.name].clone
+      def annotations_for(meth)
+        @_method_to_annotations[meth.to_sym].clone
+      end
     end
   end
 end
