@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.email         = ['tomohiro68@gmail.com']
 
   spec.summary       = 'Annotate method with anything.'
-  spec.description   = 'Annotate method with anything. Symbol, String and so on'
-  spec.homepage      = 'https://githuc.com/Sixeight/simple_annotation'
+  spec.description   = 'Annotate method with anything. symbol, string and so on.'
+  spec.homepage      = 'https://github.com/Sixeight/simple_annotation'
   spec.license       = 'MIT'
   spec.required_ruby_version = Gem::Requirement.new('>= 2.5.0')
 
