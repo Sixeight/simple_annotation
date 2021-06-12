@@ -13,6 +13,17 @@ class AnnotatableTest < Test::Unit::TestCase
     def meth1; end
   end
 
+  class C
+    include MethodAnnotation::Annotatable
+
+    annotate_method :annotation
+    def meth; end
+
+    annotate_method :another_annotation1
+    annotate_method :another_annotation2
+    def another_meth; end
+  end
+
   def setup
     A.include MethodAnnotation::Annotatable
     B.include MethodAnnotation::Annotatable
@@ -56,21 +67,17 @@ class AnnotatableTest < Test::Unit::TestCase
     assert A.method_annotated?(:annotation, :meth2)
   end
 
-  test 'Annotate methods using separate style' do
-    class C
-      include MethodAnnotation::Annotatable
-
-      annotate_method :annotation
-      def meth
-      end
-    end
-
-    assert C.method_annotated?(:annotation, :meth)
-  end
-
   test 'A#meth is annotated with same annotations twice' do
     A.annotate_method :annotation, :meth
     A.annotate_method :annotation, :meth
     assert_equal A.annotations_for(:meth), %i[annotation]
+  end
+
+  test 'Annotate methods using separate style' do
+    assert C.method_annotated?(:annotation, :meth)
+  end
+
+  test 'Annotate methods using separate style (multiple annotation)' do
+    assert_equal C.annotations_for(:another_meth), %i[another_annotation1 another_annotation2]
   end
 end

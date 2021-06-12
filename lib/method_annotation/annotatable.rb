@@ -10,8 +10,12 @@ module MethodAnnotation
 
     module ClassMethods
       def method_added(meth)
-        annotation = @__standby_annotations.shift
-        annotate_method(annotation, meth) unless annotation.nil?
+        super
+
+        @__standby_annotations.each do |annotation|
+          annotate_method annotation, meth
+        end
+        @__standby_annotations.clear
       end
 
       def annotate_method(annotation, *methods)
