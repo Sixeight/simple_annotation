@@ -16,11 +16,11 @@ class AnnotatableTest < Test::Unit::TestCase
   class C
     include SimpleAnnotation::Annotatable
 
-    annotates with: :annotation
+    annotates :annotation
     def meth; end
 
-    annotates with: :another_annotation1
-    annotates with: :another_annotation2
+    annotates :another_annotation1
+    annotates :another_annotation2
     def another_meth; end
   end
 

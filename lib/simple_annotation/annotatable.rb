@@ -11,11 +11,13 @@ module SimpleAnnotation
     end
 
     module ClassMethods
-      def annotates(*methods, with:)
-        @__standby_annotations << with if methods.length <= 0
-
-        methods.each do |meth|
-          @__method_to_annotations[meth.to_sym] << with
+      def annotates(*method_or_annotations, with: nil)
+        if with.nil?
+          @__standby_annotations.concat(method_or_annotations)
+        else
+          method_or_annotations.each do |meth|
+            @__method_to_annotations[meth.to_sym] << with
+          end
         end
       end
 
