@@ -37,6 +37,11 @@ class AnnotatableTest < Test::Unit::TestCase
     assert A.public_methods.include?(:annotated?)
   end
 
+  test 'A#meth1 is annotated' do
+    A.annotate_method :test1, :meth1
+    assert A.annotated?(:meth1)
+  end
+
   test 'A#meth1 is annotated with test1' do
     A.annotate_method :test1, :meth1
     assert A.annotated?(:meth1, with: :test1)

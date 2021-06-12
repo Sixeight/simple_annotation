@@ -19,8 +19,10 @@ module SimpleAnnotation
         end
       end
 
-      def annotated?(meth, with:)
-        @__method_to_annotations[meth.to_sym].include? with
+      def annotated?(meth, with: nil)
+        return @__method_to_annotations[meth.to_sym].include?(with) unless with.nil?
+
+        @__method_to_annotations.include? meth.to_sym
       end
 
       def annotations(meth)
