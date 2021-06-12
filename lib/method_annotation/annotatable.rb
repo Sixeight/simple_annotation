@@ -9,15 +9,6 @@ module MethodAnnotation
     end
 
     module ClassMethods
-      def method_added(meth)
-        super
-
-        @__standby_annotations.each do |annotation|
-          annotate_method annotation, meth
-        end
-        @__standby_annotations.clear
-      end
-
       def annotate_method(annotation, *methods)
         @__standby_annotations << annotation if methods.length <= 0
 
@@ -32,6 +23,17 @@ module MethodAnnotation
 
       def annotations_for(meth)
         @__method_to_annotations[meth.to_sym].to_a
+      end
+
+      private
+
+      def method_added(meth)
+        super
+
+        @__standby_annotations.each do |annotation|
+          annotate_method annotation, meth
+        end
+        @__standby_annotations.clear
       end
     end
   end
