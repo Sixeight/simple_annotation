@@ -1,4 +1,4 @@
-# MethodAnnotation
+# SimpleAnnotation
 
 Annotate method with anything. Symbol, String and so on.
 
@@ -7,7 +7,7 @@ Annotate method with anything. Symbol, String and so on.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'method_annotation'
+gem 'simple_annotation'
 ```
 
 And then execute:
@@ -16,7 +16,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install method_annotation
+    $ gem install simple_annotation
 
 ## Usage
 
@@ -24,7 +24,7 @@ Or install it yourself as:
 
 ```ruby
 class A
-  include MethodAnnotation::Annotatable
+  include SimpleAnnotation::Annotatable
 
   def meth; end
 end
@@ -40,7 +40,7 @@ A.annotations_for(:meth) #=> [:annotation]
 
 ```ruby
 class A
-  include MethodAnnotation::Annotatable
+  include SimpleAnnotation::Annotatable
 
   annotate_method 'this is a annotation'
   def meth; end
@@ -58,7 +58,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/Sixeight/method_annotation.
+Bug reports and pull requests are welcome on GitHub at https://github.com/Sixeight/simple_annotation.
 
 ## License
 

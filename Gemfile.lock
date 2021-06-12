@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    method_annotation (0.1.0)
+    simple_annotation (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -35,7 +35,7 @@ PLATFORMS
   x86_64-darwin-19
 
 DEPENDENCIES
-  method_annotation!
+  simple_annotation!
   rake (~> 13.0)
   rubocop (~> 1.7)
   test-unit (~> 3.0)

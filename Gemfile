@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in method_annotation.gemspec
+# Specify your gem's dependencies in simple_annotation.gemspec
 gemspec
 
 gem 'rake', '~> 13.0'

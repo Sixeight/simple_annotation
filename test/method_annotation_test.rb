@@ -2,10 +2,10 @@
 
 require 'test_helper'
 
-class MethodAnnotationTest < Test::Unit::TestCase
+class SimpleAnnotationTest < Test::Unit::TestCase
   test 'VERSION' do
     assert do
-      ::MethodAnnotation.const_defined?(:VERSION)
+      ::SimpleAnnotation.const_defined?(:VERSION)
     end
   end
 
@@ -18,7 +18,7 @@ class MethodAnnotationTest < Test::Unit::TestCase
   end
 
   def setup
-    A.include MethodAnnotation::Annotatable
+    A.include SimpleAnnotation::Annotatable
   end
 
   test 'A#meth is annotated with multiple annotations (unbound method)' do

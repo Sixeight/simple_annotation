@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative 'method_annotation/version'
-require_relative 'method_annotation/annotation'
-require_relative 'method_annotation/annotatable'
+require_relative 'simple_annotation/version'
+require_relative 'simple_annotation/annotation'
+require_relative 'simple_annotation/annotatable'
 
-module MethodAnnotation
+module SimpleAnnotation
   def annotations
     return [] unless owner.include? Annotatable
 

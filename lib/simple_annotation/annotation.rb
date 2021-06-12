@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module MethodAnnotation
+module SimpleAnnotation
   class Annotation
     attr_reader :name, :description
 

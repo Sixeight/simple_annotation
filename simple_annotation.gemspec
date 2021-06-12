@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require_relative 'lib/method_annotation/version'
+require_relative 'lib/simple_annotation/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'method_annotation'
-  spec.version       = MethodAnnotation::VERSION
+  spec.name          = 'simple_annotation'
+  spec.version       = SimpleAnnotation::VERSION
   spec.authors       = ['Tomohiro Nishimura']
   spec.email         = ['tomohiro68@gmail.com']
 
   spec.summary       = 'Annotate method with anything.'
   spec.description   = 'Annotate method with anything. Symbol, String and so on'
-  spec.homepage      = 'https://githuc.com/Sixeight/method_annotation'
+  spec.homepage      = 'https://githuc.com/Sixeight/simple_annotation'
   spec.license       = 'MIT'
   spec.required_ruby_version = Gem::Requirement.new('>= 2.5.0')
 

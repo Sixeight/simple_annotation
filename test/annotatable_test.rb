@@ -14,7 +14,7 @@ class AnnotatableTest < Test::Unit::TestCase
   end
 
   class C
-    include MethodAnnotation::Annotatable
+    include SimpleAnnotation::Annotatable
 
     annotate_method :annotation
     def meth; end
@@ -25,8 +25,8 @@ class AnnotatableTest < Test::Unit::TestCase
   end
 
   def setup
-    A.include MethodAnnotation::Annotatable
-    B.include MethodAnnotation::Annotatable
+    A.include SimpleAnnotation::Annotatable
+    B.include SimpleAnnotation::Annotatable
   end
 
   test 'include #annotate_method' do

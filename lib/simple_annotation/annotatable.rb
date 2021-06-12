@@ -2,7 +2,7 @@
 
 require 'set'
 
-module MethodAnnotation
+module SimpleAnnotation
   module Annotatable
     def self.included(mod)
       mod.instance_variable_set(:@__method_to_annotations, Hash.new { |h, k| h[k] = Set.new })
