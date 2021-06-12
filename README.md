@@ -29,14 +29,16 @@ class A
   def meth; end
 end
 
-# Annotate method with :annotation
-A.annotate_method(:annotation, :meth)
+A.annotated?(:meth) #=> false
 
-A.method_annotated?(:annotation, :meth) #=> true
-A.annotations_for(:meth) #=> [:annotation]
+# Annotate method with :example
+A.annotates(:meth, with: :example)
 
-A.public_instance_method(:meth).annotations #=> [:annotation]
-A.new.method(:meth).annotations #=> [:annotation]
+A.annotated?(:meth, with: :example) #=> true
+A.annotations(:meth) #=> [:example]
+
+A.public_instance_method(:meth).annotations #=> [:example]
+A.new.method(:meth).annotations #=> [:example]
 ```
 
 ### Separate line style
@@ -45,12 +47,12 @@ A.new.method(:meth).annotations #=> [:annotation]
 class A
   include SimpleAnnotation::Annotatable
 
-  annotate_method 'this is a annotation'
+  annotates 'this is a annotation'
   def meth; end
 end
 
-A.annotated?('this is a annotation', :meth) #=> true
-A.annotations_for(:meth) #=> ['this is a annotation']
+A.annotated?(:meth, with: 'this is a annotation') #=> true
+A.annotations(:meth) #=> ['this is a annotation']
 
 A.public_instance_method(:meth).annotations #=> ['this is a annotation']
 A.new.method(:meth).annotations #=> ['this is a annotation']
