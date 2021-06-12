@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-### Basic Style
+### Basic style
 
 ```ruby
 class A
@@ -34,9 +34,12 @@ A.annotate_method(:annotation, :meth)
 
 A.method_annotated?(:annotation, :meth) #=> true
 A.annotations_for(:meth) #=> [:annotation]
+
+A.public_instance_method(:meth).annotations #=> [:annotation]
+A.new.method(:meth).annotations #=> [:annotation]
 ```
 
-### Separate line Style
+### Separate line style
 
 ```ruby
 class A
@@ -46,8 +49,11 @@ class A
   def meth; end
 end
 
-A.method_annotated?('this is a annotation', :meth) #=> true
+A.annotated?('this is a annotation', :meth) #=> true
 A.annotations_for(:meth) #=> ['this is a annotation']
+
+A.public_instance_method(:meth).annotations #=> ['this is a annotation']
+A.new.method(:meth).annotations #=> ['this is a annotation']
 ```
 
 ## Development
