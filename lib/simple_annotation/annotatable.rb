@@ -11,11 +11,11 @@ module SimpleAnnotation
     end
 
     module ClassMethods
-      def annotate_method(annotation, *methods)
-        @__standby_annotations << annotation if methods.length <= 0
+      def annotates(*methods, with:)
+        @__standby_annotations << with if methods.length <= 0
 
         methods.each do |meth|
-          @__method_to_annotations[meth.to_sym] << annotation
+          @__method_to_annotations[meth.to_sym] << with
         end
       end
 
@@ -35,7 +35,7 @@ module SimpleAnnotation
         super
 
         @__standby_annotations.each do |annotation|
-          annotate_method annotation, meth
+          annotates meth, with: annotation
         end
         @__standby_annotations.clear
       end

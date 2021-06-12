@@ -16,11 +16,11 @@ class AnnotatableTest < Test::Unit::TestCase
   class C
     include SimpleAnnotation::Annotatable
 
-    annotate_method :annotation
+    annotates with: :annotation
     def meth; end
 
-    annotate_method :another_annotation1
-    annotate_method :another_annotation2
+    annotates with: :another_annotation1
+    annotates with: :another_annotation2
     def another_meth; end
   end
 
@@ -29,8 +29,8 @@ class AnnotatableTest < Test::Unit::TestCase
     B.include SimpleAnnotation::Annotatable
   end
 
-  test 'include #annotate_method' do
-    assert A.public_methods.include?(:annotate_method)
+  test 'include #annotates' do
+    assert A.public_methods.include?(:annotates)
   end
 
   test 'include #annotated?' do
@@ -38,17 +38,17 @@ class AnnotatableTest < Test::Unit::TestCase
   end
 
   test 'A#meth1 is annotated' do
-    A.annotate_method :test1, :meth1
+    A.annotates :meth1, with: :test1
     assert A.annotated?(:meth1)
   end
 
   test 'A#meth1 is annotated with test1' do
-    A.annotate_method :test1, :meth1
+    A.annotates :meth1, with: :test1
     assert A.annotated?(:meth1, with: :test1)
   end
 
   test 'A#meth1 is annotated without test2' do
-    A.annotate_method :test1, :meth1
+    A.annotates :meth1, with: :test1
     assert !A.annotated?(:meth1, with: :test2)
   end
 
@@ -61,20 +61,20 @@ class AnnotatableTest < Test::Unit::TestCase
   end
 
   test 'A#meth1 is annotated with multiple annotations' do
-    A.annotate_method :annotation1, :meth1
-    A.annotate_method :annotation2, :meth1
+    A.annotates :meth1, with: :annotation1
+    A.annotates :meth1, with: :annotation2
     assert_equal A.annotations(:meth1), %i[annotation1 annotation2]
   end
 
   test 'Add annotation to multiple methods' do
-    A.annotate_method :annotation, :meth1, :meth2
+    A.annotates :meth1, :meth2, with: :annotation
     assert A.annotated?(:meth1, with: :annotation)
-    assert A.annotated?(:meth1, with: :annotation)
+    assert A.annotated?(:meth2, with: :annotation)
   end
 
   test 'A#meth is annotated with same annotations twice' do
-    A.annotate_method :annotation, :meth
-    A.annotate_method :annotation, :meth
+    A.annotates :meth, with: :annotation
+    A.annotates :meth, with: :annotation
     assert_equal A.annotations(:meth), %i[annotation]
   end
 

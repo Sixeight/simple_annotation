@@ -22,15 +22,15 @@ class SimpleAnnotationTest < Test::Unit::TestCase
   end
 
   test 'A#meth is annotated with multiple annotations (unbound method)' do
-    A.annotate_method :annotation1, :meth
-    A.annotate_method :annotation2, :meth
+    A.annotates :meth, with: :annotation1
+    A.annotates :meth, with: :annotation2
     unbound_meth = A.public_instance_method(:meth)
     assert_equal unbound_meth.annotations, %i[annotation1 annotation2]
   end
 
   test 'A#meth is annotated with multiple annotations (method)' do
-    A.annotate_method :annotation1, :meth
-    A.annotate_method :annotation2, :meth
+    A.annotates :meth, with: :annotation1
+    A.annotates :meth, with: :annotation2
     meth = A.new.public_method(:meth)
     assert_equal meth.annotations, %i[annotation1 annotation2]
   end
