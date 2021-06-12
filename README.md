@@ -1,8 +1,6 @@
 # MethodAnnotation
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/method_annotation`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Annotate method with anything. Symbol, String and so on.
 
 ## Installation
 
@@ -22,7 +20,35 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Basic Style
+
+```ruby
+class A
+  include MethodAnnotation::Annotatable
+
+  def meth; end
+end
+
+# Annotate method with :annotation
+A.annotate_method(:annotation, :meth)
+
+A.method_annotated?(:annotation, :meth) #=> true
+A.annotations_for(:meth) #=> [:annotation]
+```
+
+### Separate line Style
+
+```ruby
+class A
+  include MethodAnnotation::Annotatable
+
+  annotate_method 'this is a annotation'
+  def meth; end
+end
+
+A.method_annotated?('this is a annotation', :meth) #=> true
+A.annotations_for(:meth) #=> ['this is a annotation']
+```
 
 ## Development
 
@@ -32,7 +58,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/method_annotation.
+Bug reports and pull requests are welcome on GitHub at https://github.com/Sixeight/method_annotation.
 
 ## License
 
