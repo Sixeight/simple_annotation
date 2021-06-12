@@ -33,26 +33,26 @@ class AnnotatableTest < Test::Unit::TestCase
     assert A.public_methods.include?(:annotate_method)
   end
 
-  test 'include #method_annotated?' do
-    assert A.public_methods.include?(:method_annotated?)
+  test 'include #annotated?' do
+    assert A.public_methods.include?(:annotated?)
   end
 
   test 'A#meth1 is annotated with test1' do
     A.annotate_method :test1, :meth1
-    assert A.method_annotated?(:test1, :meth1)
+    assert A.annotated?(:meth1, with: :test1)
   end
 
   test 'A#meth1 is annotated without test2' do
     A.annotate_method :test1, :meth1
-    assert !A.method_annotated?(:test2, :meth1)
+    assert !A.annotated?(:meth1, with: :test2)
   end
 
   test 'A#meth2 is not annotated' do
-    assert !A.method_annotated?(:test, :meth2)
+    assert !A.annotated?(:meth2, with: :test)
   end
 
   test 'B#meth1 is not annotated' do
-    assert !B.method_annotated?(:test, :meth1)
+    assert !B.annotated?(:meth1, with: :test)
   end
 
   test 'A#meth1 is annotated with multiple annotations' do
@@ -63,8 +63,8 @@ class AnnotatableTest < Test::Unit::TestCase
 
   test 'Add annotation to multiple methods' do
     A.annotate_method :annotation, :meth1, :meth2
-    assert A.method_annotated?(:annotation, :meth1)
-    assert A.method_annotated?(:annotation, :meth2)
+    assert A.annotated?(:meth1, with: :annotation)
+    assert A.annotated?(:meth1, with: :annotation)
   end
 
   test 'A#meth is annotated with same annotations twice' do
@@ -74,7 +74,7 @@ class AnnotatableTest < Test::Unit::TestCase
   end
 
   test 'Annotate methods using separate style' do
-    assert C.method_annotated?(:annotation, :meth)
+    assert C.annotated?(:meth, with: :annotation)
   end
 
   test 'Annotate methods using separate style (multiple annotation)' do
