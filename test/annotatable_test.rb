@@ -58,7 +58,7 @@ class AnnotatableTest < Test::Unit::TestCase
   test 'A#meth1 is annotated with multiple annotations' do
     A.annotate_method :annotation1, :meth1
     A.annotate_method :annotation2, :meth1
-    assert_equal A.annotations_for(:meth1), %i[annotation1 annotation2]
+    assert_equal A.annotations(:meth1), %i[annotation1 annotation2]
   end
 
   test 'Add annotation to multiple methods' do
@@ -70,7 +70,7 @@ class AnnotatableTest < Test::Unit::TestCase
   test 'A#meth is annotated with same annotations twice' do
     A.annotate_method :annotation, :meth
     A.annotate_method :annotation, :meth
-    assert_equal A.annotations_for(:meth), %i[annotation]
+    assert_equal A.annotations(:meth), %i[annotation]
   end
 
   test 'Annotate methods using separate style' do
@@ -78,6 +78,6 @@ class AnnotatableTest < Test::Unit::TestCase
   end
 
   test 'Annotate methods using separate style (multiple annotation)' do
-    assert_equal C.annotations_for(:another_meth), %i[another_annotation1 another_annotation2]
+    assert_equal C.annotations(:another_meth), %i[another_annotation1 another_annotation2]
   end
 end

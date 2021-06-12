@@ -23,7 +23,7 @@ module SimpleAnnotation
         @__method_to_annotations[meth.to_sym].include? annotation
       end
 
-      def annotations_for(meth)
+      def annotations(meth)
         @__method_to_annotations[meth.to_sym].to_a
       end
 

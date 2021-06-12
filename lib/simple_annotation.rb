@@ -7,7 +7,7 @@ module SimpleAnnotation
   def annotations
     return [] unless owner.include? Annotatable
 
-    owner.annotations_for(original_name)
+    owner.annotations(original_name)
   end
 
   ::UnboundMethod.include self
